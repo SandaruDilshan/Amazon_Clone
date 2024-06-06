@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Uploader</title>
+  <style>
+    .image-uploader {
+      width: 400px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .drop-zone {
+      text-align: center;
+      padding: 20px;
+      border-dashed: 2px #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .drop-zone p {
+      margin-bottom: 10px;
+    }
+
+    .image-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .image-preview img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-uploader">
+    <div class="drop-zone">
+      <p class="file-text">Drag & Drop images here or click to browse</p>
+      <input type="file" id="image-input" multiple accept="image/*">
+    </div>
+    <div class="image-preview"></div>
+  </div>
+
+  <script>
+    const dropZone = document.querySelector('.drop-zone');
+    const imageInput = document.querySelector('#image-input');
+    const imagePreview = document.querySelector('.image-preview');
+    const fileText = document.querySelector('.file-text');
+
+    // Drag & Drop functionality
+    dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.classList.remove('dragover');
+      const files = event.dataTransfer.files;
+      displayImages(files);
+      hideFileText();
+    });
+
+    // File selection from input element
+    imageInput.addEventListener('change', (event) => {
+      const files = event.target.files;
+      displayImages(files);
+      hideFileText();
+    });
+
+    function displayImages(files) {
+      imagePreview.innerHTML = '';
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (event) {
+          const image = document.createElement('img');
+          image.src = event.target.result; // Set image source to the base64-encoded data URL
+          imagePreview.appendChild(image); // Append the image to the preview area
+        };
+      }
+    }
+
+    function hideFileText() {
+      fileText.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

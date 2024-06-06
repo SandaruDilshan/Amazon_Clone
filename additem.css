@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family:Outfit ;
+}
+body{
+    background-color:rgb(235, 230, 230) ;
+}
+.container {
+    width: 1200px;
+    margin: 5px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    font-size: 40px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .container input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    background-color: rgb(255, 208, 0); /* Amazon orange color */
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    opacity: 0.8; /* Slight opacity change on hover */
+  }
+  
+  #formtext {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+  
+  .container  a {
+    color: #0468aa; /* Amazon orange color for links */
+    text-decoration: none;
+  }
+  .logo_a{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo_a h1{
+    margin-top: 20px;
+}
+#itemcatogary{
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+form p,a{
+    font-size: 12px;
+}
+
+/* Add Image style */
+
+
+.image-uploader {
+    height: 200px;
+    margin-top: 20px;
+    width: 500px;
+    border: 2px dotted #9e9898;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .drop-zone {
+    text-align: center;
+    padding: 0px;
+
+    border-dashed: 2px #ddd;
+    border-radius: 5px;
+    margin-bottom: 0px;
+    cursor: pointer;
+  }
+
+  .drop-zone p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .image-preview img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .hidden {
+    display: none;
+  }
+  #image-input{
+    margin-left: 70px;
+    margin-top: 10px
+  }
+  textarea {
+    width: 600px; /* Set the width */
+    height: 150px; /* Set the height */
+    resize: both; /* Allow resizing */
+  }
+  #quentity,#price{
+    width: 200px;
+  }
