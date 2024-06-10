@@ -1,3 +1,11 @@
+<?php 
+    include "config.php";
+    session_start();
+    $email = $_SESSION['email'];
+    $sql = "SELECT * FROM `items` WHERE `email`='$email'";
+    $result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -148,24 +156,35 @@
     <div class="ordercount">
         <div>
             <p>OPEN ORDERS</p>
-            <h1>18</h1>
+            <h1>0</h1>
         </div>
         <div>
             <P>TODAY'S SALES</P>
-            <h1>$29.99</h1>
+            <h1>$0</h1>
         </div>
         <div>
             <p>TOTAL BALANCE</p>
-            <h1>$1234.46</h1>
+            <h1>$0</h1>
         </div>
         <div>
             <p>BUYER MASSAGE</p>
-            <h1>10</h1>
+            <h1>0</h1>
         </div>
+        <?php 
+          if($result->num_rows >0){
+            $raw = $result->fetch_assoc();
+            global $total ;
+             for($i=1; $result->num_rows >= $i; $i++){
+                $total =$total+$raw['quantity'];
+             }
+            
+        ?>
+        
         <div>
             <p>NUMBER OF ITEMS</p>
-            <h1>130</h1>
+            <h1><?php echo $total ?></h1>
         </div>
+        <?php } ?>
     </div>
 
     <div class="sellitems">
@@ -187,50 +206,36 @@
               <th>Quentity</th>
               <th>Mthly Sales</th>
               <th>Unit price</th>
-              <th>Reviews</th>
             </tr>
           </thead>
+
           <tbody>
+          <?php 
+            if($result->num_rows >0){
+              while($raw = $result->fetch_assoc()){
+                $imgData = base64_encode($raw['img']); 
+                $imgSrc = 'data:image/jpeg;base64,' . $imgData;
+
+          ?>
             <tr>
               <td>
                 <div class="itemdetails">
-                    <img src="assets/product1-1.jpg" alt="">
-                    <p>Item name/title</p>
+
+                <img src="<?php echo $imgSrc; ?>" alt="product image">
+
+                    <p><?php echo $raw['itemName']; ?></p>
                 </div>
               </td>
-              <td>Toys & Games</td>
-              <td>10</td>
+              <td><?php echo $raw['catagory']; ?></td>
+              <td><?php echo $raw['quantity']; ?></td>
               <td>$17,502.48</td>
-              <td>$20</td>
-              <td>209</td>
+              <td><?php echo $raw['price']; ?></td>
             </tr>
-            <tr>
-              <td>GX, EX, or V</td>
-              <td></td>
-              <td>(178212.15)</td>
-              <td></td>
-              
-              <td></td>
-              
-            </tr>
-            <tr>
-              <td>100 Assorted Pokemon Cards-10</td>
-              <td>Toys & Games</td>
-              <td>Reverse Holographic Cards, 90...</td>
-              <td>$85,568.97</td>
-              
-              <td>4,405</td>
-            
-            </tr>
-            <tr>
-              <td>BOTOKROZWY Golden Groundfiog</td>
-              <td></td>
-              <td></td>
-              <td>(52186512.97)</td>
-              
-              <td></td>
-              
-            </tr>
+
+          <?php 
+              }
+            }
+          ?>
           </tbody>
         </table>
   </div>
