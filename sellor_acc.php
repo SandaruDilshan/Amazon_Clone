@@ -172,11 +172,10 @@
         </div>
         <?php 
           if($result->num_rows >0){
-            $raw = $result->fetch_assoc();
-            global $total ;
-             for($i=1; $result->num_rows >= $i; $i++){
-                $total =$total+$raw['quantity'];
-             }
+            $total = 0 ;
+            while($raw = $result->fetch_assoc()) {
+              $total += $raw['quantity'];
+          }
             
         ?>
         
@@ -210,33 +209,31 @@
           </thead>
 
           <tbody>
-          <?php 
-            if($result->num_rows >0){
-              while($raw = $result->fetch_assoc()){
-                $imgData = base64_encode($raw['img']); 
-                $imgSrc = 'data:image/jpeg;base64,' . $imgData;
-
-          ?>
-            <tr>
-              <td>
-                <div class="itemdetails">
-
-                <img src="<?php echo $imgSrc; ?>" alt="product image">
-
-                    <p><?php echo $raw['itemName']; ?></p>
-                </div>
-              </td>
-              <td><?php echo $raw['catagory']; ?></td>
-              <td><?php echo $raw['quantity']; ?></td>
-              <td>$17,502.48</td>
-              <td><?php echo $raw['price']; ?></td>
-            </tr>
-
-          <?php 
-              }
+            <?php
+            $result->data_seek(0); 
+            if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    $imgData = base64_encode($row['img']); 
+                    $imgSrc = 'data:image/jpeg;base64,' . $imgData;
+            ?>
+                <tr>
+                    <td>
+                        <div class="itemdetails">
+                            <img src="<?php echo $imgSrc; ?>"  alt="Product Image" />
+                            <p><?php echo htmlspecialchars($row['itemName']); ?></p>
+                        </div>
+                    </td>
+                    <td><?php echo htmlspecialchars($row['catagory']); ?></td>
+                    <td><?php echo htmlspecialchars($row['quantity']); ?></td>
+                    <td>$17,502.48</td>
+                    <td><?php echo htmlspecialchars($row['price']); ?></td>
+                </tr>
+            <?php 
+                }
             }
-          ?>
-          </tbody>
+            ?>
+            </tbody>
+        </table>
         </table>
   </div>
     <footer>
@@ -250,5 +247,6 @@
       src="https://kit.fontawesome.com/eb9a09f072.js"
       crossorigin="anonymous"
     ></script>
+    
   </body>
 </html>
