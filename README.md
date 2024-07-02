@@ -1,5 +1,6 @@
 # Amazon_Clone
-##User home
+#User home
+
 I created amazon clone web using HTML CSS Javascript and PHP for back end.
 ![image](https://amazon-clone012.s3.amazonaws.com/Screenshot+(300).png)
 
