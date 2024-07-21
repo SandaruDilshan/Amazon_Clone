@@ -1,12 +1,14 @@
 <?php 
-    $serverName ="localhost";
-    $userName ="root";
-    $password="";
-    $dbName = "amazon_clone";
 
-    $conn = mysqli_connect($serverName, $userName, $password, $dbName);
+$serverName ="localhost";
+$userName ="root";
+$password="";
+$dbName = "amazon_clone";
 
-    if(!$conn){
-        die("Connection Faild".mysqli_connect_error());
-    }
+$conn = mysqli_connect($serverName, $userName, $password, $dbName);
+
+if(!$conn){
+    die("Connection Faild".mysqli_connect_error());
+}
+
 ?>

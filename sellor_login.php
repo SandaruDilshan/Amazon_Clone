@@ -15,10 +15,12 @@
         $result = $sqlBind->get_result();
 
         if($result->num_rows === 1){
+
+
             $raw = $result->fetch_assoc();
 
             if(password_verify($password,$raw['password'])){
-                $_SESSION['email'] = $email;
+                $_SESSION['email']=$email;
                 header("Location:sellor_acc.php");
                 exit();
             }
@@ -32,5 +34,6 @@
             exit();
         }
 
+        
     }
 ?>

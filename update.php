@@ -1,3 +1,23 @@
+<?php 
+include 'config.php';
+
+if(isset($_GET['id'])){
+    
+    $UserID = $_GET['id'];
+    
+    $sql = "SELECT `itemName`,`img`,`description`,`quantity`,`price` FROM `items` WHERE `id`='$UserID' ";
+    
+    $result = $conn->query($sql);
+
+    if($result->num_rows>0){
+        while($row=$result->fetch_assoc()){
+          $name = $row['itemName'];
+          $image = htmlspecialchars($row['img']);
+          $description = $row['description'];
+          $quantity = $row['quantity'];
+          $price = $row['price'];
+        }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +26,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add item</title>
   <link rel="stylesheet" href="additem.css">
-</head>
+</head> 
 <body>
 <div class="form">
     <div class="logo_a">
@@ -17,7 +37,7 @@
   <div class="container">
 
     <h1>Start your listing</h1>
-    <form action="sellor_send_items.php" method="post" enctype="multipart/form-data">
+    <form action="uphp.php" method="post" enctype="multipart/form-data">
      
       <label for="itemcatogary">SELECT ITEM CATOGARY</label>
        <select name="itemCatogary" id="itemcatogary">
@@ -26,8 +46,10 @@
             <option value="Lunar New Year">Lunar New Year</option>
             <option value="Computers">Computers</option>
             <option value="Smart Home">Smart Home</option>
-            <option value="Women_Fashion">Women's Fashion</option>
+            <option value="Women's Fashion">Women's Fashion</option>
             <option value=">Men's Fation">Men's Fation</option>
+            <option value="Girl's Fasion">Girl's Fasion</option>
+            <option value="Boy's Fashon">Boy's Fashon</option>
             <option value="Towels">Towels</option>
             <option value="Baby">Baby</option>
             <option value="Toys">Toys</option>
@@ -46,7 +68,7 @@
         <a href="">Manage your listing templates</a><br><br>
         
         <label for="itemname">ITEM TITLE</label>
-        <input type="text" id="itemname" name="itemName" placeholder="Item name">
+        <input type="text" id="itemname" name="itemName" placeholder="Item name" value="<?php echo $name ?>">
 
         <div class="image-uploader">
             <div class="drop-zone">
@@ -59,15 +81,15 @@
 
        
       <label for="password">DESCRIPTION</label>
-      <textarea id="message" name="message" rows="4" cols="50"  placeholder="Write a detailed description of your item."></textarea><br><br><br>
+      <textarea id="message" name="message"  rows="4" cols="50"  placeholder="Write a detailed description of your item." ><?php echo htmlspecialchars($description); ?></textarea><br><br><br>
       
 
       <label for="quantity">QUENTITY</label>
-      <input type="text" id="quentity" name="Quentity" placeholder="Count"><br><br>
+      <input type="text" id="quentity" name="Quentity" placeholder="Count" value="<?php echo $quantity ?>"><br><br>
 
       <label for="price">PRICE</label>
-      <input type="text" id="price" name="Price" placeholder="$ price "><br><br>
-      <input type="hidden" id="id" name="id" >
+      <input type="text" id="price" name="Price" placeholder="$ price " value="<?php echo $price ?>"><br><br>
+      <input type="hidden" id="id" name="id" value="<?php echo $UserID ?>" >
 
       <input type="submit" name="submit" value="LIST ITEMS" class="btn">
     </form>
@@ -76,6 +98,14 @@
   </div>
 </div>
 
-<script src="itemform.js"> </script>
+<script src="../itemform.js"> </script>
 </body>
 </html>
+
+
+<?php
+    }else{
+        header('Location:sellor_acc.php');
+    } 
+}
+?>

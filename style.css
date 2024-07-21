@@ -141,11 +141,15 @@ nav{
     min-height: 200px;
     z-index: 1;
 }
-.box-col a{
+.box-col input{
     font-size: 30px;
     color: #009999;
     font-weight: 500;
     font-size: 15px;
+    border:none;
+    background:none;
+    cursor:pointer;
+    width: 100px;
 }
 .header-box{
     margin-top: -20vw;
@@ -188,6 +192,7 @@ nav{
 .product-slider-with-price .products::-webkit-scrollbar{
     display: none;
 }
+
 .product-card{
     display: flex;
     flex-direction: column;
@@ -482,3 +487,84 @@ hr{
     width: 340px;
     height: 30px;
   }
+
+/* Cart style */
+.cart-container{
+    margin-left:40px;
+    background: #fff;
+    width: 90%; 
+    min-height: 57vh;
+}
+.cart-page{
+    margin:80px auto;
+}
+.cart-page table{
+    width: 100%;
+    margin:auto;
+    border-collapse: collapse;
+    background: #fff;
+}
+.cart-info{
+    display:flex; 
+    flex-wrap:wrap;
+}
+.cart-page th{
+   text-align: left;
+   padding: 5px;
+   background: #ff523b;
+   font-weigh:normal; 
+}
+.cart-page td{
+    padding:10px 5px;
+}
+.cart-page td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+.cart-page td a{
+    color: #ff523b;
+    font-size: 13px;
+}
+.cart-page td img{
+    width: 100px;
+    margin-right: 10px;
+}
+.total-price{
+    
+    width: 90%;
+}
+.total-price hr{
+    border: none;
+    background: #ff523b;
+    height: 3px;
+    width:50%;
+    margin-left: 45%;
+}
+.total-price div{
+    display:flex;
+    width: 50%;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 45%;
+}
+.total-price div button{
+    background: #ff523b;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    height:30px;
+    font-size: 14px;
+}
+
+
+
+/* .total-price {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 350px;
+} */
